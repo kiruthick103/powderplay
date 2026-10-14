@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Universe Maps — PowderPlay Cinema</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=17.0" />
+  <link rel="stylesheet" href="universes.css?v=1.0" />
+</head>
+<body>
+
+  <!-- Glassmorphism Topbar Header -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="index.html#/" class="brand" title="PowderPlay Homepage">
+        <img src="assets/powderplay-header-logo.png" alt="PowderPlay — Watch ■ Stream ■ Enjoy" class="brand__logo" />
+      </a>
+
+      <!-- Global Navigation Menu -->
+      <nav class="topbar__nav" style="display:flex; align-items:center; gap:16px;">
+        <a href="index.html#/" style="color:#d1d5db; font-size:14px; font-weight:700; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d1d5db'">🏠 Home</a>
+        <a href="index.html#mood-section" style="color:#d1d5db; font-size:14px; font-weight:700; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d1d5db'">🎭 Moods</a>
+        <a href="universes.html" style="color:#ff4d4d; font-size:14px; font-weight:700; border-bottom:2px solid #e50914; padding-bottom:2px;">🌌 Universes</a>
+        <a href="index.html#/watch-together" style="color:#d1d5db; font-size:14px; font-weight:700; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d1d5db'">🍿 Watch Together</a>
+      </nav>
+
+      <div class="topbar__right">
+        <a href="index.html#/" class="glass-btn" style="padding: 8px 16px; font-size: 13px; text-decoration: none;">[ ← BROWSE CATALOG ]</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Universe Maps View -->
+  <main class="uni-page-wrap">
+    
+    <!-- Hero Intro -->
+    <div class="uni-hero">
+      <span class="uni-hero__badge">✨ Interactive Chronology</span>
+      <h1 class="uni-hero__title">Movie Universe Maps</h1>
+      <p class="uni-hero__subtitle">
+        Explore complete franchise timelines in theatrical release or canonical story order. Track your watched progress and continue where you left off.
+      </p>
+    </div>
+
+    <!-- Franchise Selection Cards (populated from universes.json) -->
+    <div class="uni-franchise-grid" id="uni-franchise-grid" role="region" aria-label="Franchise selector"></div>
+
+    <!-- Active Franchise Interactive Timeline Stage -->
+    <div class="uni-timeline-stage" id="uni-timeline-stage" role="region" aria-label="Active universe timeline">
+      <div style="text-align: center; padding: 40px; color: #9ca3af;">
+        <span>Loading cinematic universe data…</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand-wrap">
+        <img src="assets/powderplay-header-logo.png" alt="PowderPlay" class="footer__logo" />
+      </div>
+      <p class="footer__text">
+        PowderPlay Movie Universe Maps — Canonical timelines and release chronologies powered by TMDB data.
+      </p>
+      <p class="footer__notice">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    </div>
+  </footer>
+
+  <script src="universes.js?v=1.0"></script>
+</body>
+</html>

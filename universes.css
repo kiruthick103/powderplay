@@ -1,0 +1,519 @@
+/* ==========================================================================
+   FEATURE 4: MOVIE UNIVERSE MAPS (universes.css)
+   Prefix: uni-
+   Styles for franchise cards, interactive timelines, watched tracker & zoom
+   ========================================================================== */
+
+/* Page Container */
+.uni-page-wrap {
+  max-width: var(--maxw, 1400px);
+  margin: 0 auto;
+  padding: 30px 24px 80px 24px;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Header & Intro */
+.uni-hero {
+  text-align: center;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.uni-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(229, 9, 20, 0.15);
+  border: 1px solid rgba(229, 9, 20, 0.45);
+  color: #ff4d4d;
+  font-family: var(--font-display, inherit);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.uni-hero__title {
+  font-family: var(--font-display, inherit);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: -1px;
+}
+
+.uni-hero__subtitle {
+  color: #9ca3af;
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Franchise Selector Cards Grid */
+.uni-franchise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.uni-franchise-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(18, 22, 34, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.uni-franchise-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, var(--uni-theme, #e50914) 0%, transparent 65%);
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.uni-franchise-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.uni-franchise-card:hover::before {
+  opacity: 0.35;
+}
+
+.uni-franchise-card.uni-active-franchise {
+  border-color: var(--uni-theme, #e50914);
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.4), inset 0 0 20px rgba(229, 9, 20, 0.15);
+  transform: translateY(-2px);
+}
+
+.uni-franchise-card__badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--uni-theme, #ff4d4d);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.uni-franchise-card__name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.uni-franchise-card__tagline {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+.uni-franchise-card__count {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e5e7eb;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 4px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+/* Active Timeline Stage */
+.uni-timeline-stage {
+  background: rgba(14, 18, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 30px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Timeline Toolbar */
+.uni-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.uni-title-group h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.uni-progress-text {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* Order Toggle & Buttons */
+.uni-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.uni-order-toggle {
+  display: inline-flex;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.uni-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uni-toggle-btn.uni-toggle-active {
+  background: rgba(229, 9, 20, 0.9);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(229, 9, 20, 0.4);
+}
+
+.uni-continue-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.uni-continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
+}
+
+/* Zoom Controls */
+.uni-zoom-controls {
+  display: inline-flex;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.uni-zoom-btn {
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.uni-zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Progress Bar */
+.uni-progress-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.uni-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #38bdf8, #e50914);
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Interactive Timeline Container */
+.uni-timeline-scroll-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 10px 40px 10px;
+  scroll-behavior: smooth;
+  cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(229, 9, 20, 0.5) rgba(255, 255, 255, 0.05);
+}
+
+.uni-timeline-scroll-wrap:active {
+  cursor: grabbing;
+}
+
+.uni-timeline-track {
+  display: inline-flex;
+  position: relative;
+  padding: 40px 30px;
+  gap: 28px;
+  min-width: 100%;
+  transform-origin: top left;
+  transition: transform 0.2s ease;
+}
+
+/* Central Continuous Timeline Line */
+.uni-timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 30px;
+  right: 30px;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(229, 9, 20, 0.8), rgba(56, 189, 248, 0.8), rgba(16, 185, 129, 0.8));
+  border-radius: 2px;
+  z-index: 1;
+  box-shadow: 0 0 14px rgba(229, 9, 20, 0.4);
+}
+
+/* Timeline Node */
+.uni-node {
+  position: relative;
+  z-index: 2;
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.uni-node__step-dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0f131f;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 24px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
+  transition: all 0.25s ease;
+}
+
+.uni-node.uni-node-watched .uni-node__step-dot {
+  background: #10b981;
+  border-color: #34d399;
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.6);
+}
+
+/* Node Card */
+.uni-node__card {
+  width: 100%;
+  background: rgba(22, 28, 44, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.uni-node:hover .uni-node__card {
+  transform: translateY(-6px);
+  border-color: rgba(229, 9, 20, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.uni-node.uni-node-focus .uni-node__card {
+  border-color: #10b981;
+  box-shadow: 0 0 28px rgba(16, 185, 129, 0.6);
+  animation: uniPulse 1.2s infinite alternate;
+}
+
+@keyframes uniPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.04); }
+}
+
+/* Poster */
+.uni-node__poster-wrap {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  position: relative;
+  background: #0a0d14;
+  overflow: hidden;
+}
+
+.uni-node__poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.uni-node:hover .uni-node__poster {
+  transform: scale(1.05);
+}
+
+.uni-node__phase-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #38bdf8;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+}
+
+.uni-node__era-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #e5e7eb;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+/* Node Info */
+.uni-node__body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.uni-node__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.uni-node__year {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+/* Watched Checkbox */
+.uni-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d1d5db;
+  cursor: pointer;
+  user-select: none;
+  padding: 6px 0;
+}
+
+.uni-checkbox-input {
+  width: 18px;
+  height: 18px;
+  accent-color: #10b981;
+  cursor: pointer;
+}
+
+.uni-node-watch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 7px 10px;
+  background: rgba(229, 9, 20, 0.85);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.uni-node-watch-btn:hover {
+  background: #e50914;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .uni-page-wrap {
+    padding: 18px 12px 60px 12px;
+  }
+  .uni-timeline-stage {
+    padding: 18px 14px;
+  }
+  .uni-node {
+    width: 175px;
+  }
+}
